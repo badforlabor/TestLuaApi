@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoRegTestFunc.h" />
+    <ClInclude Include="LuaCppBind.h" />
     <ClInclude Include="LuaUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

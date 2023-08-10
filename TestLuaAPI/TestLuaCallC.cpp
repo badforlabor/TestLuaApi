@@ -9,6 +9,7 @@
 
 #include "LuaUtils.h"
 #include "AutoRegTestFunc.h"
+#include "LuaCppBind.h"
 using namespace std;
 
 extern "C" {
@@ -82,3 +83,79 @@ print("name", newTable.name)
 }
 
 static AutoRegTestFunc autoTest(Test3);
+
+
+static int test0()
+{
+    return 0;
+}
+
+static int test1(int a)
+{
+    return a;
+}
+
+static int test2(int a, float b)
+{
+    return a - b;
+}
+
+static const char* test3(const char* str)
+{
+    return str;
+}
+
+static void test4()
+{
+
+}
+static void test5(int a)
+{
+    std::cout<<a;
+}
+
+static void test6(int a, float b)
+{
+    std::cout<<a << "\t" << b;
+}
+static void test7(int a, float b, char* c)
+{
+    std::cout<<a << "\t" << b << "\t" << (c == nullptr ? "" : c);
+}
+
+static void Test4()
+{
+    /* 初始化Lua */
+    /* 指向Lua解释器的指针 */
+    lua_State* L = luaL_newstate();
+
+    /* 载入Lua基本库 */
+    luaL_openlibs(L);
+
+    // 自动注册！
+    REGISTER_FUNCTION(L, test0);
+    REGISTER_FUNCTION(L, test1);
+    REGISTER_FUNCTION(L, test2);
+    REGISTER_FUNCTION(L, test3);
+    REGISTER_FUNCTION(L, test4);
+    REGISTER_FUNCTION(L, test5);
+    REGISTER_FUNCTION(L, test6);
+    REGISTER_FUNCTION(L, test7);
+
+    const char* luaCode = R"delimiter(
+print("test0:", test0())
+print("test1:", test1(10))
+print("test2:", test2(12, 1))
+print("test3:", test3("Hello World"))
+print("test4:", test4())
+print("test5:", test5(1))
+print("test6:", test6(1, 2))
+print("test7:", test7(1, 2, "3"))
+        )delimiter";
+
+    LuaUtils::RunCode(L, luaCode);
+    
+    /* 清除Lua */
+    lua_close(L);
+}
+static AutoRegTestFunc autoTest4(Test4);

@@ -128,12 +128,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="TestLuaAPI.cpp" />
+    <ClCompile Include="AutoRegTestFunc.cpp" />
+    <ClCompile Include="Test1.cpp" />
+    <ClCompile Include="TestLuaCallC.cpp" />
+    <ClCompile Include="LuaUtils.cpp" />
+    <ClCompile Include="Test2.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LuaLib\LuaLib.vcxproj">
       <Project>{39c3531a-839e-4a57-8dd2-832d8cd4a52c}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutoRegTestFunc.h" />
+    <ClInclude Include="LuaUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

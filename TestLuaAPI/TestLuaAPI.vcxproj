@@ -134,6 +134,8 @@
     <ClCompile Include="LuaUtils.cpp" />
     <ClCompile Include="Test2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestLuaCallCpp.cpp" />
+    <ClCompile Include="TestLuaUserData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LuaLib\LuaLib.vcxproj">
